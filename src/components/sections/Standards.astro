@@ -1,0 +1,128 @@
+---
+import { t, type Lang } from '../../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tr = t[lang];
+---
+
+<section class="standards" id="standards">
+  <div class="container">
+    <div class="standards-grid">
+      <div class="standards-text">
+        <span class="section-label">{lang === 'ru' ? 'Стандарты' : 'Standards'}</span>
+        <h2 class="section-title">{tr.standards.title}</h2>
+        <p class="standards-desc">{tr.standards.text}</p>
+        <ul class="standards-list">
+          {tr.standards.list.map(item => (
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="standards-warning">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          <p>{tr.standards.warning}</p>
+        </div>
+      </div>
+      <div class="standards-visual">
+        <div class="std-badge">ГОСТ</div>
+        <div class="std-badge">ASTM</div>
+        <div class="std-badge">DIN</div>
+        <div class="std-badge">JIS</div>
+        <div class="std-badge">EN</div>
+        <div class="std-badge">TU</div>
+        <div class="std-badge">ISO</div>
+        <div class="std-badge">GOST</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .standards {
+    padding: 100px 0;
+    background: var(--color-bg-light);
+  }
+  .standards-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .standards-desc {
+    font-size: 16px;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 28px;
+  }
+  .standards-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .standards-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--color-text);
+  }
+  .standards-list li svg {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+  .standards-warning {
+    display: flex;
+    gap: 12px;
+    padding: 20px;
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+    border-radius: var(--radius-sm);
+    color: #92400e;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .standards-warning svg {
+    flex-shrink: 0;
+    color: #f59e0b;
+  }
+  .standards-visual {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    align-content: center;
+  }
+  .std-badge {
+    padding: 16px 28px;
+    background: white;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text);
+    transition: var(--transition);
+  }
+  .std-badge:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 900px) {
+    .standards-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .standards-visual {
+      order: -1;
+    }
+  }
+</style>

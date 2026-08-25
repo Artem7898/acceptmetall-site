@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/sections/Header.astro';
+import Footer from '../../components/sections/Footer.astro';
+import { t } from '../../i18n/translations';
+
+const tr = t.en;
+---
+
+<Layout lang="en">
+  <Header lang="en" />
+  <main class="legal-page">
+    <div class="container">
+      <h1>{tr.privacy.title}</h1>
+      <div class="legal-content">
+        <p>This Privacy Policy describes how LLC Akcept-2 collects, uses, and protects users' personal data on the website.</p>
+        <h2>1. Information Collection</h2>
+        <p>We collect personal data that you voluntarily provide when filling out contact forms: name, company name, contact phone, email address, and information about the requested products.</p>
+        <h2>2. Use of Information</h2>
+        <p>Collected data is used solely for preparing commercial proposals, communicating with customers, and organizing metal product supplies.</p>
+        <h2>3. Data Protection</h2>
+        <p>We take necessary measures to protect personal data from unauthorized access, alteration, disclosure, or destruction.</p>
+        <h2>4. Third-Party Disclosure</h2>
+        <p>Personal data is not transferred to third parties without user consent, except as required by law.</p>
+        <h2>5. Contacts</h2>
+        <p>For questions regarding personal data processing, contact: <a href="mailto:Fedor.fiberflex@gmail.com">Fedor.fiberflex@gmail.com</a></p>
+      </div>
+    </div>
+  </main>
+  <Footer lang="en" />
+</Layout>
+
+<style>
+  .legal-page {
+    padding: 140px 0 80px;
+    background: var(--color-bg-light);
+    min-height: 60vh;
+  }
+  .legal-page h1 {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 40px;
+    color: var(--color-text);
+  }
+  .legal-content {
+    max-width: 720px;
+  }
+  .legal-content h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 32px 0 16px;
+    color: var(--color-text);
+  }
+  .legal-content p {
+    font-size: 15px;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .legal-content a {
+    color: var(--color-accent);
+  }
+</style>

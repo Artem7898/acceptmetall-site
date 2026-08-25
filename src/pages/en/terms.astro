@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/sections/Header.astro';
+import Footer from '../../components/sections/Footer.astro';
+import { t } from '../../i18n/translations';
+
+const tr = t.en;
+---
+
+<Layout lang="en">
+  <Header lang="en" />
+  <main class="legal-page">
+    <div class="container">
+      <h1>{tr.terms.title}</h1>
+      <div class="legal-content">
+        <p>This User Agreement governs the relationship between LLC Akcept-2 and users of the akceptmetall.ru website.</p>
+        <h2>1. General Provisions</h2>
+        <p>By using the website, you agree to the terms of this agreement. If you do not agree, please stop using the website.</p>
+        <h2>2. Website Information</h2>
+        <p>Information about products, delivery times, and costs is for reference only. Specific terms are determined individually in the commercial proposal.</p>
+        <h2>3. Limitation of Liability</h2>
+        <p>The company is not liable for any damages that may arise from using information from the website.</p>
+        <h2>4. Governing Law</h2>
+        <p>This agreement is governed by the laws of the Russian Federation.</p>
+      </div>
+    </div>
+  </main>
+  <Footer lang="en" />
+</Layout>
+
+<style>
+  .legal-page {
+    padding: 140px 0 80px;
+    background: var(--color-bg-light);
+    min-height: 60vh;
+  }
+  .legal-page h1 {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 40px;
+    color: var(--color-text);
+  }
+  .legal-content {
+    max-width: 720px;
+  }
+  .legal-content h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 32px 0 16px;
+    color: var(--color-text);
+  }
+  .legal-content p {
+    font-size: 15px;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+</style>

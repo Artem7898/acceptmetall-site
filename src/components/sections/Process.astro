@@ -1,0 +1,131 @@
+---
+import { t, type Lang } from '../../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tr = t[lang];
+---
+
+<section class="process" id="process">
+  <div class="container">
+    <div class="process-header">
+      <span class="section-label">{lang === 'ru' ? 'Процесс' : 'Process'}</span>
+      <h2 class="section-title">{tr.process.title}</h2>
+    </div>
+    <div class="process-timeline">
+      {tr.process.steps.map((step, i) => (
+        <div class="process-step">
+          <div class="step-num">{step.num}</div>
+          <div class="step-content">
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-desc">{step.desc}</p>
+          </div>
+          {i < tr.process.steps.length - 1 && <div class="step-line"></div>}
+        </div>
+      ))}
+    </div>
+    <div class="process-timing">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <p>{tr.process.timing}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .process {
+    padding: 100px 0;
+    background: white;
+  }
+  .process-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .process-timeline {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    position: relative;
+  }
+  .process-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+  }
+  .step-num {
+    width: 56px;
+    height: 56px;
+    background: var(--color-accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 auto 20px;
+    position: relative;
+    z-index: 2;
+  }
+  .step-content {
+    padding: 0 8px;
+  }
+  .step-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--color-text);
+  }
+  .step-desc {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  .step-line {
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background: var(--color-border);
+    z-index: 1;
+  }
+  .process-timing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 64px;
+    padding: 24px;
+    background: var(--color-bg-light);
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  .process-timing svg {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 768px) {
+    .process-timeline {
+      flex-direction: column;
+      gap: 32px;
+    }
+    .step-line {
+      display: none;
+    }
+    .process-step {
+      display: flex;
+      align-items: flex-start;
+      text-align: left;
+      gap: 20px;
+    }
+    .step-num {
+      margin: 0;
+      flex-shrink: 0;
+    }
+  }
+</style>

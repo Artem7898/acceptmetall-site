@@ -1,0 +1,163 @@
+---
+import { t, type Lang } from '../../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tr = t[lang];
+---
+
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-pattern"></div>
+  </div>
+  <div class="container hero-content">
+    <div class="hero-text">
+      <h1 class="hero-title">{tr.hero.title}</h1>
+      <p class="hero-subtitle">{tr.hero.subtitle}</p>
+      <p class="hero-desc">{tr.hero.text}</p>
+      <div class="hero-cta">
+        <a href="#quote" class="btn btn-primary">{tr.hero.ctaPrimary}</a>
+        <a href="#contact" class="btn btn-secondary">{tr.hero.ctaSecondary}</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card hero-card-1">
+        <div class="card-icon">🚢</div>
+        <span>{lang === 'ru' ? 'Морские перевозки' : 'Sea Freight'}</span>
+      </div>
+      <div class="hero-card hero-card-2">
+        <div class="card-icon">🚂</div>
+        <span>{lang === 'ru' ? 'Ж/Д транспорт' : 'Rail Transport'}</span>
+      </div>
+      <div class="hero-card hero-card-3">
+        <div class="card-icon">🏭</div>
+        <span>{lang === 'ru' ? 'Промышленные поставки' : 'Industrial Supply'}</span>
+      </div>
+      <div class="hero-card hero-card-4">
+        <div class="card-icon">📦</div>
+        <span>{lang === 'ru' ? 'До склада' : 'To Warehouse'}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 140px 0 80px;
+    overflow: hidden;
+    background: var(--color-graphite);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  }
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(255,255,255,0.03) 20px,
+      rgba(255,255,255,0.03) 40px
+    );
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero-title {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.1;
+    color: white;
+    margin-bottom: 24px;
+  }
+  .hero-subtitle {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--color-steel);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    max-width: 540px;
+  }
+  .hero-desc {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .hero-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    position: relative;
+  }
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+  }
+  .hero-card:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.2);
+    transform: translateY(-4px);
+  }
+  .card-icon {
+    font-size: 32px;
+    line-height: 1;
+  }
+  .hero-card span {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 900px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-subtitle, .hero-desc {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-cta {
+      justify-content: center;
+    }
+    .hero-visual {
+      order: -1;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+  @media (max-width: 480px) {
+    .hero-visual {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

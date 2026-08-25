@@ -1,0 +1,67 @@
+---
+import { t, type Lang } from '../../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tr = t[lang];
+---
+
+<section class="final-cta">
+  <div class="container">
+    <div class="final-cta-content">
+      <h2 class="final-cta-title">{tr.finalCta.title}</h2>
+      <p class="final-cta-subtitle">{tr.finalCta.subtitle}</p>
+      <div class="final-cta-buttons">
+        <a href="#quote" class="btn btn-primary btn-lg">{tr.finalCta.primary}</a>
+        <a href="tel:+79045511763" class="btn btn-secondary btn-lg">{tr.finalCta.secondary}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .final-cta {
+    padding: 100px 0;
+    background: var(--color-graphite);
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, transparent 50%);
+  }
+  .final-cta-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .final-cta-title {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 16px;
+  }
+  .final-cta-subtitle {
+    font-size: 18px;
+    color: var(--color-steel);
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  .final-cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-lg {
+    padding: 16px 40px;
+    font-size: 16px;
+  }
+</style>

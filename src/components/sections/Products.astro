@@ -1,0 +1,121 @@
+---
+import { t, type Lang } from '../../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tr = t[lang];
+---
+
+<section class="products" id="products">
+  <div class="container">
+    <div class="products-header">
+      <span class="section-label">{lang === 'ru' ? 'Каталог' : 'Catalog'}</span>
+      <h2 class="section-title">{tr.products.title}</h2>
+    </div>
+    <div class="products-grid">
+      {tr.products.categories.map((cat, i) => (
+        <div class="product-card">
+          <div class="product-visual">
+            <div class="product-icon">{['🔩', '⚙️', '🔧'][i]}</div>
+          </div>
+          <div class="product-content">
+            <h3 class="product-name">{cat.name}</h3>
+            <ul class="product-list">
+              {cat.items.map(item => (
+                <li>{item}</li>
+              ))}
+            </ul>
+            <a href="#quote" class="btn btn-outline product-cta">{tr.products.cta}</a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .products {
+    padding: 100px 0;
+    background: white;
+  }
+  .products-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .product-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  .product-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+  .product-visual {
+    height: 160px;
+    background: linear-gradient(135deg, var(--color-graphite), #1e293b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-icon {
+    font-size: 64px;
+    opacity: 0.8;
+  }
+  .product-content {
+    padding: 32px;
+  }
+  .product-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--color-text);
+  }
+  .product-list {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+  .product-list li {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .product-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .product-cta {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 1024px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

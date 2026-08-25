@@ -1,0 +1,154 @@
+---
+import { t, type Lang } from '../../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tr = t[lang];
+---
+
+<section class="supplies" id="supplies">
+  <div class="container">
+    <div class="supplies-header">
+      <span class="section-label">{lang === 'ru' ? 'География' : 'Geography'}</span>
+      <h2 class="section-title">{tr.supplies.title}</h2>
+    </div>
+    <div class="supplies-grid">
+      <div class="supply-card supply-asia">
+        <div class="supply-icon">🌏</div>
+        <h3 class="supply-title">{tr.supplies.asiaTitle}</h3>
+        <p class="supply-text">{tr.supplies.asiaText}</p>
+        <div class="supply-routes">
+          <div class="route">
+            <span class="route-dot cn"></span>
+            <span>China</span>
+            <span class="route-arrow">→</span>
+            <span class="route-dot ru"></span>
+            <span>Russia</span>
+          </div>
+          <div class="route">
+            <span class="route-dot in"></span>
+            <span>India</span>
+            <span class="route-arrow">→</span>
+            <span class="route-dot ru"></span>
+            <span>Russia</span>
+          </div>
+        </div>
+      </div>
+      <div class="supply-card supply-eu">
+        <div class="supply-icon">🇪🇺</div>
+        <h3 class="supply-title">{tr.supplies.euTitle}</h3>
+        <p class="supply-text">{tr.supplies.euText}</p>
+        <div class="supply-routes">
+          <div class="route">
+            <span class="route-dot eu"></span>
+            <span>EU</span>
+            <span class="route-arrow">→</span>
+            <span class="route-dot ru"></span>
+            <span>Russia</span>
+          </div>
+        </div>
+        <div class="eu-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          <p>{tr.supplies.euNote}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .supplies {
+    padding: 100px 0;
+    background: var(--color-bg-light);
+  }
+  .supplies-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .supplies-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .supply-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 40px;
+    transition: var(--transition);
+  }
+  .supply-card:hover {
+    box-shadow: var(--shadow-lg);
+  }
+  .supply-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  .supply-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--color-text);
+  }
+  .supply-text {
+    font-size: 15px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .supply-routes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .route {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--color-bg-light);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  .route-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .route-dot.cn { background: #de2910; }
+  .route-dot.in { background: #ff9932; }
+  .route-dot.eu { background: #003399; }
+  .route-dot.ru { background: #1c3578; }
+  .route-arrow {
+    color: var(--color-steel);
+    font-weight: 400;
+  }
+  .eu-note {
+    display: flex;
+    gap: 10px;
+    padding: 16px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    color: #1e40af;
+    line-height: 1.6;
+  }
+  .eu-note svg {
+    flex-shrink: 0;
+    color: #3b82f6;
+  }
+
+  @media (max-width: 768px) {
+    .supplies-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

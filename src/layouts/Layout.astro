@@ -1,0 +1,91 @@
+---
+import { t, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tr = t[lang];
+const otherLang = lang === 'ru' ? 'en' : 'ru';
+const otherPath = lang === 'ru' ? '/en/' : '/';
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={tr.meta.description} />
+  <meta name="author" content="ООО Акцепт-2" />
+  <meta property="og:title" content={tr.meta.title} />
+  <meta property="og:description" content={tr.meta.description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={lang === 'ru' ? 'https://akceptmetall.ru/' : 'https://akceptmetall.ru/en/'} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href={lang === 'ru' ? 'https://akceptmetall.ru/' : 'https://akceptmetall.ru/en/'} />
+  <link rel="alternate" hreflang="ru" href="https://akceptmetall.ru/" />
+  <link rel="alternate" hreflang="en" href="https://akceptmetall.ru/en/" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{tr.meta.title}</title>
+  <script type="application/ld+json">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": lang === 'ru' ? "ООО Акцепт-2" : "LLC Akcept-2",
+    "url": "https://akceptmetall.ru",
+    "logo": "https://akceptmetall.ru/favicon.svg",
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+7-904-551-17-63",
+        "contactType": "sales",
+        "areaServed": "RU",
+        "availableLanguage": ["Russian", "English"]
+      }
+    ],
+    "sameAs": []
+  })}
+  </script>
+</head>
+<body>
+  <slot />
+  <div class="lang-switcher-fixed">
+    <a href={otherPath} class="lang-btn">{otherLang.toUpperCase()}</a>
+  </div>
+</body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>
+
+<style>
+  .lang-switcher-fixed {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+  }
+  .lang-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+  }
+  .lang-btn:hover {
+    background: var(--color-accent);
+    color: white;
+    border-color: var(--color-accent);
+  }
+</style>

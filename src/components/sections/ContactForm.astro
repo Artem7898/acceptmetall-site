@@ -1,0 +1,102 @@
+---
+import { t, type Lang } from '../../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tr = t[lang];
+---
+
+<section class="contact-form-section">
+  <div class="container">
+    <div class="contact-form-card">
+      <h3 class="contact-form-title">{tr.contactForm.title}</h3>
+      <form class="compact-form" id="compactForm">
+        <div class="compact-row">
+          <input type="text" name="name" placeholder={tr.contactForm.name} required />
+          <input type="text" name="company" placeholder={tr.contactForm.company} />
+        </div>
+        <div class="compact-row">
+          <input type="tel" name="phone" placeholder={tr.contactForm.phone} required />
+          <input type="email" name="email" placeholder={tr.contactForm.email} required />
+        </div>
+        <textarea name="message" placeholder={tr.contactForm.message} rows="3" required></textarea>
+        <button type="submit" class="btn btn-primary">{tr.contactForm.submit}</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById('compactForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const lang = document.documentElement.lang;
+    const email = lang === 'ru' ? 'Fedor.accept-2@yandex.ru' : 'Fedor.fiberflex@gmail.com';
+    const body = `Name: ${data.get('name')}\nCompany: ${data.get('company')}\nPhone: ${data.get('phone')}\nEmail: ${data.get('email')}\n\nMessage:\n${data.get('message')}`;
+    window.location.href = `mailto:${email}?subject=[Contact] ${data.get('company')}&body=${encodeURIComponent(body)}`;
+    e.target.reset();
+  });
+</script>
+
+<style>
+  .contact-form-section {
+    padding: 80px 0;
+    background: var(--color-bg-light);
+  }
+  .contact-form-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 40px;
+  }
+  .contact-form-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+    color: var(--color-text);
+  }
+  .compact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .compact-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .compact-form input,
+  .compact-form textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: inherit;
+    transition: var(--transition);
+  }
+  .compact-form input:focus,
+  .compact-form textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-light);
+  }
+  .compact-form button {
+    align-self: center;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 640px) {
+    .compact-row {
+      grid-template-columns: 1fr;
+    }
+    .contact-form-card {
+      padding: 24px;
+    }
+  }
+</style>

@@ -1,0 +1,225 @@
+---
+import { t, type Lang } from '../../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tr = t[lang];
+---
+
+<section class="quote" id="quote">
+  <div class="container">
+    <div class="quote-header">
+      <span class="section-label">{lang === 'ru' ? 'Заявка' : 'Request'}</span>
+      <h2 class="section-title">{tr.quoteForm.title}</h2>
+      <p class="section-desc">{tr.quoteForm.subtitle}</p>
+    </div>
+    <form class="quote-form" id="quoteForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>{tr.quoteForm.fields.name}</label>
+          <input type="text" name="name" required />
+        </div>
+        <div class="form-group">
+          <label>{tr.quoteForm.fields.company}</label>
+          <input type="text" name="company" required />
+        </div>
+        <div class="form-group">
+          <label>{tr.quoteForm.fields.phone}</label>
+          <input type="tel" name="phone" required />
+        </div>
+        <div class="form-group">
+          <label>{tr.quoteForm.fields.email}</label>
+          <input type="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label>{tr.quoteForm.fields.category}</label>
+          <select name="category">
+            <option value="">{lang === 'ru' ? 'Выберите категорию' : 'Select category'}</option>
+            <option>{lang === 'ru' ? 'Нержавеющая сталь' : 'Stainless Steel'}</option>
+            <option>{lang === 'ru' ? 'Черный металлопрокат' : 'Carbon Steel'}</option>
+            <option>{lang === 'ru' ? 'Цветные металлы' : 'Non-Ferrous Metals'}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>{tr.quoteForm.fields.product}</label>
+          <input type="text" name="product" />
+        </div>
+        <div class="form-group">
+          <label>{tr.quoteForm.fields.grade}</label>
+          <input type="text" name="grade" />
+        </div>
+        <div class="form-group">
+          <label>{tr.quoteForm.fields.sizes}</label>
+          <input type="text" name="sizes" />
+        </div>
+        <div class="form-group">
+          <label>{tr.quoteForm.fields.quantity}</label>
+          <input type="text" name="quantity" />
+        </div>
+        <div class="form-group">
+          <label>{tr.quoteForm.fields.unit}</label>
+          <input type="text" name="unit" />
+        </div>
+        <div class="form-group">
+          <label>{tr.quoteForm.fields.standard}</label>
+          <input type="text" name="standard" />
+        </div>
+        <div class="form-group">
+          <label>{tr.quoteForm.fields.origin}</label>
+          <input type="text" name="origin" />
+        </div>
+        <div class="form-group form-full">
+          <label>{tr.quoteForm.fields.deadline}</label>
+          <input type="text" name="deadline" />
+        </div>
+        <div class="form-group form-full">
+          <label>{tr.quoteForm.fields.comment}</label>
+          <textarea name="comment" rows="4"></textarea>
+        </div>
+        <div class="form-group form-full">
+          <label>{tr.quoteForm.fields.file}</label>
+          <input type="file" name="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png" />
+        </div>
+      </div>
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary btn-lg">{tr.quoteForm.submit}</button>
+        <p class="form-consent">{tr.quoteForm.consent}</p>
+      </div>
+    </form>
+    <div class="form-success" id="formSuccess">
+      <div class="success-icon">✓</div>
+      <h3>{tr.quoteForm.successTitle}</h3>
+      <p>{tr.quoteForm.successText}</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('quoteForm');
+  const success = document.getElementById('formSuccess');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const lang = document.documentElement.lang;
+    const email = lang === 'ru' ? 'Fedor.accept-2@yandex.ru' : 'Fedor.fiberflex@gmail.com';
+
+    let body = '';
+    data.forEach((value, key) => {
+      if (value) body += `${key}: ${value}\n`;
+    });
+
+    window.location.href = `mailto:${email}?subject=[${lang === 'ru' ? 'Заявка' : 'Quote'}] ${data.get('company')}&body=${encodeURIComponent(body)}`;
+
+    form.style.display = 'none';
+    success.style.display = 'block';
+  });
+</script>
+
+<style>
+  .quote {
+    padding: 100px 0;
+    background: var(--color-bg-light);
+  }
+  .quote-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .quote-form {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 48px;
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: inherit;
+    background: white;
+    transition: var(--transition);
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-light);
+  }
+  .form-full {
+    grid-column: 1 / -1;
+  }
+  .form-footer {
+    margin-top: 32px;
+    text-align: center;
+  }
+  .btn-lg {
+    padding: 16px 48px;
+    font-size: 16px;
+  }
+  .form-consent {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--color-text-muted);
+  }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 64px 32px;
+    background: white;
+    border-radius: var(--radius);
+    border: 2px solid #22c55e;
+  }
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    background: #22c55e;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 24px;
+  }
+  .form-success h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--color-text);
+  }
+  .form-success p {
+    color: var(--color-text-muted);
+    font-size: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .quote-form {
+      padding: 24px;
+    }
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

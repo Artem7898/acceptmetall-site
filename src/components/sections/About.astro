@@ -1,0 +1,139 @@
+---
+import { t, type Lang } from '../../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tr = t[lang];
+---
+
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="section-label">{lang === 'ru' ? 'О нас' : 'About'}</span>
+        <h2 class="section-title">{tr.about.title}</h2>
+        <p class="about-para">{tr.about.text1}</p>
+        <p class="about-para">{tr.about.text2}</p>
+        <div class="about-transport">
+          <p class="transport-label">{lang === 'ru' ? 'Наши поставки осуществляются:' : 'Our deliveries are carried out by:'}</p>
+          <div class="transport-tags">
+            {tr.about.transport.map(item => (
+              <span class="transport-tag">{item}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <span class="stat-value">30–45</span>
+          <span class="stat-unit">{lang === 'ru' ? 'суток' : 'days'}</span>
+          <span class="stat-label">{tr.about.timingLabel}</span>
+        </div>
+        <div class="about-note">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <p>{tr.about.timingNote}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: 100px 0;
+    background: var(--color-bg-light);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-para {
+    font-size: 16px;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .about-transport {
+    margin-top: 32px;
+    padding: 24px;
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+  }
+  .transport-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 12px;
+  }
+  .transport-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .transport-tag {
+    padding: 8px 16px;
+    background: var(--color-accent-light);
+    color: var(--color-accent);
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 100px;
+  }
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .stat-card {
+    background: var(--color-graphite);
+    border-radius: var(--radius);
+    padding: 40px;
+    text-align: center;
+    color: white;
+  }
+  .stat-value {
+    display: block;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--color-accent);
+    line-height: 1;
+  }
+  .stat-unit {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 4px 0 12px;
+    color: rgba(255,255,255,0.8);
+  }
+  .stat-label {
+    font-size: 14px;
+    color: var(--color-steel);
+  }
+  .about-note {
+    display: flex;
+    gap: 12px;
+    padding: 20px;
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+    border-radius: var(--radius-sm);
+    color: #92400e;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .about-note svg {
+    flex-shrink: 0;
+    color: #f59e0b;
+  }
+
+  @media (max-width: 900px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+</style>

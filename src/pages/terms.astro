@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/sections/Header.astro';
+import Footer from '../components/sections/Footer.astro';
+import { t } from '../i18n/translations';
+
+const tr = t.ru;
+---
+
+<Layout lang="ru">
+  <Header lang="ru" />
+  <main class="legal-page">
+    <div class="container">
+      <h1>{tr.terms.title}</h1>
+      <div class="legal-content">
+        <p>Настоящее Пользовательское соглашение регулирует отношения между ООО «Акцепт-2» и пользователями сайта akceptmetall.ru.</p>
+        <h2>1. Общие положения</h2>
+        <p>Используя сайт, вы соглашаетесь с условиями настоящего соглашения. Если вы не согласны с условиями, пожалуйста, прекратите использование сайта.</p>
+        <h2>2. Информация на сайте</h2>
+        <p>Информация о продукции, сроках поставки и стоимости носит ознакомительный характер. Конкретные условия определяются индивидуально в коммерческом предложении.</p>
+        <h2>3. Ограничение ответственности</h2>
+        <p>Компания не несет ответственности за возможные убытки, возникшие в результате использования информации с сайта.</p>
+        <h2>4. Правовое регулирование</h2>
+        <p>Настоящее соглашение регулируется законодательством Российской Федерации.</p>
+      </div>
+    </div>
+  </main>
+  <Footer lang="ru" />
+</Layout>
+
+<style>
+  .legal-page {
+    padding: 140px 0 80px;
+    background: var(--color-bg-light);
+    min-height: 60vh;
+  }
+  .legal-page h1 {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 40px;
+    color: var(--color-text);
+  }
+  .legal-content {
+    max-width: 720px;
+  }
+  .legal-content h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 32px 0 16px;
+    color: var(--color-text);
+  }
+  .legal-content p {
+    font-size: 15px;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+</style>

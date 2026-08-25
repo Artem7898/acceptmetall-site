@@ -1,0 +1,132 @@
+---
+import { t, type Lang } from '../../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tr = t[lang];
+---
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-header">
+      <span class="section-label">{lang === 'ru' ? 'Контакты' : 'Contacts'}</span>
+      <h2 class="section-title">{tr.contact.title}</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-flag">🇷🇺</div>
+        <h3 class="contact-company">{tr.contact.accept2.name}</h3>
+        <div class="contact-detail">
+          <span class="detail-label">{tr.contact.accept2.inn}</span>
+          <span class="detail-value">{tr.contact.accept2.innVal}</span>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-label">{tr.contact.accept2.ogrn}</span>
+          <span class="detail-value">{tr.contact.accept2.ogrnVal}</span>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-label">{lang === 'ru' ? 'Адрес' : 'Address'}</span>
+          <span class="detail-value">{tr.contact.accept2.address}</span>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-label">Email</span>
+          <a href={`mailto:${tr.contact.accept2.email}`} class="detail-link">{tr.contact.accept2.email}</a>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-label">{lang === 'ru' ? 'Телефон' : 'Phone'}</span>
+          <a href={`tel:${tr.contact.accept2.phone.replace(/\D/g, '')}`} class="detail-link">{tr.contact.accept2.phone}</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-flag">🇪🇪</div>
+        <h3 class="contact-company">{tr.contact.fiberflex.name}</h3>
+        <div class="contact-detail">
+          <span class="detail-label">{tr.contact.fiberflex.reg}</span>
+          <span class="detail-value">{tr.contact.fiberflex.regVal}</span>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-label">{lang === 'ru' ? 'Адрес' : 'Address'}</span>
+          <span class="detail-value">{tr.contact.fiberflex.address}</span>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-label">Email</span>
+          <a href={`mailto:${tr.contact.fiberflex.email}`} class="detail-link">{tr.contact.fiberflex.email}</a>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-label">{lang === 'ru' ? 'Телефон' : 'Phone'}</span>
+          <a href={`tel:${tr.contact.fiberflex.phone.replace(/\D/g, '')}`} class="detail-link">{tr.contact.fiberflex.phone}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: 100px 0;
+    background: white;
+  }
+  .contact-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .contact-card {
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 40px;
+  }
+  .contact-flag {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .contact-company {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--color-text);
+  }
+  .contact-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 16px;
+  }
+  .detail-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+  .detail-value {
+    font-size: 14px;
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+  .detail-link {
+    font-size: 14px;
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .detail-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,86 @@
+---
+import { t, type Lang } from '../../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tr = t[lang];
+---
+
+<div class="floating-cta" id="floatingCta">
+  <a href="#quote" class="floating-btn floating-primary">
+    <span>{tr.floating.quote}</span>
+  </a>
+  <a href="tel:+79045511763" class="floating-btn floating-call">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span>{tr.floating.call}</span>
+  </a>
+</div>
+
+<script>
+  const floating = document.getElementById('floatingCta');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {
+      floating?.classList.add('floating-visible');
+    } else {
+      floating?.classList.remove('floating-visible');
+    }
+  });
+</script>
+
+<style>
+  .floating-cta {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120px);
+    display: flex;
+    gap: 12px;
+    z-index: 999;
+    transition: transform 0.4s ease;
+  }
+  .floating-visible {
+    transform: translateX(-50%) translateY(0);
+  }
+  .floating-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    transition: var(--transition);
+  }
+  .floating-primary {
+    background: var(--color-accent);
+    color: white;
+  }
+  .floating-primary:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+  }
+  .floating-call {
+    background: white;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+  .floating-call:hover {
+    background: var(--color-bg-light);
+  }
+
+  @media (max-width: 640px) {
+    .floating-cta {
+      bottom: 16px;
+      gap: 8px;
+    }
+    .floating-btn {
+      padding: 12px 20px;
+      font-size: 13px;
+    }
+  }
+</style>
