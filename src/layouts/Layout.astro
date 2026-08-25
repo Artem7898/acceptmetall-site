@@ -8,7 +8,15 @@ interface Props {
 const { lang } = Astro.props;
 const tr = t[lang];
 const otherLang = lang === 'ru' ? 'en' : 'ru';
+
+// Если сейчас русский ('/'), переключаем на '/en/'
+// Если сейчас английский, переключаем на главную русскую '/'
 const otherPath = lang === 'ru' ? '/en/' : '/';
+
+// Динамические URL для SEO (используем site из astro.config.mjs)
+const currentPath = Astro.url.pathname;
+const ruCanonical = lang === 'ru' ? Astro.site : new URL('/en/', Astro.site);
+const enCanonical = lang === 'en' ? Astro.site : new URL('/', Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -18,16 +26,21 @@ const otherPath = lang === 'ru' ? '/en/' : '/';
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={tr.meta.description} />
   <meta name="author" content="ООО Акцепт-2" />
+
   <meta property="og:title" content={tr.meta.title} />
   <meta property="og:description" content={tr.meta.description} />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content={lang === 'ru' ? 'https://akceptmetall.ru/' : 'https://akceptmetall.ru/en/'} />
+  <meta property="og:url" content={lang === 'ru' ? ruCanonical : enCanonical} />
+
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="canonical" href={lang === 'ru' ? 'https://akceptmetall.ru/' : 'https://akceptmetall.ru/en/'} />
-  <link rel="alternate" hreflang="ru" href="https://akceptmetall.ru/" />
-  <link rel="alternate" hreflang="en" href="https://akceptmetall.ru/en/" />
+
+  <link rel="canonical" href={lang === 'ru' ? ruCanonical : enCanonical} />
+  <link rel="alternate" hreflang="ru" href={ruCanonical} />
+  <link rel="alternate" hreflang="en" href={enCanonical} />
+
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <title>{tr.meta.title}</title>
+
   <script type="application/ld+json">
   {JSON.stringify({
     "@context": "https://schema.org",
@@ -50,8 +63,11 @@ const otherPath = lang === 'ru' ? '/en/' : '/';
 </head>
 <body>
   <slot />
+
   <div class="lang-switcher-fixed">
-    <a href={otherPath} class="lang-btn">{otherLang.toUpperCase()}</a>
+    <a href={otherPath} class="lang-btn" aria-label={`Switch to ${otherLang}`}>
+      {otherLang.toUpperCase()}
+    </a>
   </div>
 </body>
 </html>
@@ -74,18 +90,18 @@ const otherPath = lang === 'ru' ? '/en/' : '/';
     width: 44px;
     height: 44px;
     background: rgba(255,255,255,0.95);
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-border, #ccc);
     border-radius: 50%;
     font-size: 13px;
     font-weight: 700;
-    color: var(--color-text);
+    color: var(--color-text, #333);
     text-decoration: none;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
+    box-shadow: var(--shadow, 0 2px 8px rgba(0,0,0,0.1));
+    transition: var(--transition, all 0.3s ease);
   }
   .lang-btn:hover {
-    background: var(--color-accent);
+    background: var(--color-accent, #007bff);
     color: white;
-    border-color: var(--color-accent);
+    border-color: var(--color-accent, #007bff);
   }
 </style>
