@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* @import шрифтов УДАЛЁН — теперь в Layout.astro через <link rel="stylesheet"> */
 
 :root {
   --color-bg: #0f172a;
