@@ -2,7 +2,7 @@ export const t = {
   ru: {
     meta: {
       title: "ООО Акцепт-2 — поставки металлопроката из Китая, Индии и Европы",
-      description: "Федеральный поставщик нержавеющего, черного и цветного металлопроката. Поставки из Китая, Индии и стран ЕС. Доставка до склада заказчика.",
+      description: "Федеральный поставщик нержавеющего, черного и цветного металлопроката. Поставки из Китая, Индии и стран ЕС на рынки России. Доставка до склада заказчика.",
     },
     header: {
       tagline: "Федеральный поставщик металлопроката",
@@ -111,7 +111,7 @@ export const t = {
         ogrn: "ОГРН",
         ogrnVal: "1247800037473",
         address: "198264, РФ, г. Санкт-Петербург, вн. тер. г. Муниципальный Округ Сосновая Поляна, ул. Летчика Пилютова, д. 17, литера А, офис 79",
-        email: "Fedor.accept-2@yandex.ru",
+        email: "Fedor.fiberflex@gmail.com",
         phone: "+7 (904) 551-17-63",
       },
       fiberflex: {
@@ -156,7 +156,7 @@ export const t = {
   en: {
     meta: {
       title: "Akcept-2 — Industrial Metal Supply from China, India and Europe",
-      description: "Industrial supplier of stainless steel, carbon steel, non-ferrous metals and alloys from China, India and Europe. Delivery to your warehouse.",
+      description: "Industrial supplier of stainless steel, carbon steel, non-ferrous metals and alloys from China, India and Europe to Russian markets. Delivery to your warehouse.",
     },
     header: {
       tagline: "Federal Metal Supplier",
