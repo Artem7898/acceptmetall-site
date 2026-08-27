@@ -2,7 +2,7 @@ export const t = {
   ru: {
     meta: {
       title: "ООО Акцепт-2 — поставки металлопроката из Китая, Индии и Европы",
-      description: "Федеральный поставщик нержавеющего, черного и цветного металлопроката. Поставки из Китая, Индии и стран ЕС на рынки России. Доставка до склада заказчика.",
+      description: "Федеральный поставщик нержавеющего, черного и цветного металлопроката. Поставки из Китая, Индии и стран ЕС. Доставка до склада заказчика.",
     },
     header: {
       tagline: "Федеральный поставщик металлопроката",
@@ -11,7 +11,7 @@ export const t = {
     },
     hero: {
       title: "Металлопрокат из Азии и Европы — с поставкой до вашего склада",
-      subtitle: "Организуем поставки нержавеющего, черного и цветного металлопроката из Китая, Индии и стран ЕС.",
+      subtitle: "Организуем поставки нержавеющего, черного и цветного металлопроката из Китая, Индии и стран ЕС На рынки России.",
       text: "Растаможим, организуем логистику и доставим продукцию до вашего склада.",
       ctaPrimary: "Получить расчет",
       ctaSecondary: "Оставить заявку",
@@ -156,7 +156,7 @@ export const t = {
   en: {
     meta: {
       title: "Akcept-2 — Industrial Metal Supply from China, India and Europe",
-      description: "Industrial supplier of stainless steel, carbon steel, non-ferrous metals and alloys from China, India and Europe to Russian markets. Delivery to your warehouse.",
+      description: "Industrial supplier of stainless steel, carbon steel, non-ferrous metals and alloys from China, India and Europe. Delivery to your warehouse.",
     },
     header: {
       tagline: "Federal Metal Supplier",
@@ -165,7 +165,7 @@ export const t = {
     },
     hero: {
       title: "Metal Products from Asia and Europe — Delivered to Your Warehouse",
-      subtitle: "We arrange supplies of stainless, carbon and non-ferrous metal products from China, India and EU countries.",
+      subtitle: "We arrange supplies of stainless, carbon and non-ferrous metal products from China, India and EU countries To the Russian markets.",
       text: "Customs clearance, logistics and delivery to your warehouse included.",
       ctaPrimary: "Get a Quote",
       ctaSecondary: "Submit a Request",
@@ -265,7 +265,7 @@ export const t = {
         ogrn: "OGRN",
         ogrnVal: "1247800037473",
         address: "198264, Russia, St. Petersburg, Municipal District Sosnovaya Polyana, Letchika Pilyutova st., 17, lit. A, office 79",
-        email: "Fedor.accept-2@yandex.ru",
+        email: "Fedor.fiberflex@gmail.com",
         phone: "+7 (904) 551-17-63",
       },
       fiberflex: {
