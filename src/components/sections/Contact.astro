@@ -37,7 +37,7 @@ const tr = t[lang];
         </div>
         <div class="contact-detail">
           <span class="detail-label">{lang === 'ru' ? 'Телефон' : 'Phone'}</span>
-          <a href={`tel:${tr.contact.accept2.phone.replace(/\D/g, '')}`} class="detail-link">{tr.contact.accept2.phone}</a>
+          <a href={`tel:${tr.contact.accept2.phone.replace(/[^\d+]/g, '')}`} class="detail-link">{tr.contact.accept2.phone}</a>
         </div>
       </div>
       <div class="contact-card">
@@ -57,7 +57,7 @@ const tr = t[lang];
         </div>
         <div class="contact-detail">
           <span class="detail-label">{lang === 'ru' ? 'Телефон' : 'Phone'}</span>
-          <a href={`tel:${tr.contact.fiberflex.phone.replace(/\D/g, '')}`} class="detail-link">{tr.contact.fiberflex.phone}</a>
+          <a href={`tel:${tr.contact.fiberflex.phone.replace(/[^\d+]/g, '')}`} class="detail-link">{tr.contact.fiberflex.phone}</a>
         </div>
       </div>
     </div>
