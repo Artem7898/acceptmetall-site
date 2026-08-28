@@ -1,0 +1,11 @@
+{
+  "name": "ООО Акцепт-2",
+  "short_name": "Акцепт-2",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#2563eb",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
