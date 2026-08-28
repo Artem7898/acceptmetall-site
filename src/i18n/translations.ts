@@ -11,7 +11,7 @@ export const t = {
     },
     hero: {
       title: "Металлопрокат из Азии и Европы — с поставкой до вашего склада",
-      subtitle: "Организуем поставки нержавеющего, черного и цветного металлопроката из Китая, Индии и стран ЕС На рынки России.",
+      subtitle: "Организуем поставки нержавеющего, черного и цветного металлопроката из Китая, Индии и стран ЕС на рынки России.",
       text: "Растаможим, организуем логистику и доставим продукцию до вашего склада.",
       ctaPrimary: "Получить расчет",
       ctaSecondary: "Оставить заявку",
@@ -165,7 +165,7 @@ export const t = {
     },
     hero: {
       title: "Metal Products from Asia and Europe — Delivered to Your Warehouse",
-      subtitle: "We arrange supplies of stainless, carbon and non-ferrous metal products from China, India and EU countries To the Russian markets.",
+      subtitle: "We arrange supplies of stainless, carbon and non-ferrous metal products from China, India and EU countries to the Russian markets.",
       text: "Customs clearance, logistics and delivery to your warehouse included.",
       ctaPrimary: "Get a Quote",
       ctaSecondary: "Submit a Request",
