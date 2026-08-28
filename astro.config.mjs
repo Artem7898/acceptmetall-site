@@ -1,19 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://akceptmetall.ru',
-
-  // Пока сайт работает в поддиректории.
-  // После покупки и подключения akceptmetall.ru
-  // этот параметр можно будет удалить.
-  base: '/acceptmetall-site/',
-
+  site: 'https://acceptmetall.ru',
   output: 'static',
-
-  // Все страницы будут использовать trailing slash:
-  // /en/
-  // /privacy/
-  // /en/privacy/
   trailingSlash: 'always',
 
   i18n: {
@@ -21,8 +10,6 @@ export default defineConfig({
     locales: ['ru', 'en'],
 
     routing: {
-      // Русский — основной язык без /ru/
-      // Английский — /en/
       prefixDefaultLocale: false,
     },
   },
