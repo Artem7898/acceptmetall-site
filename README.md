@@ -18,4 +18,5 @@ npm run dev
 
 ## Деплой
 
-Push в `main` → GitHub Actions автоматически деплоит на Pages.
+Push в `main` → GitHub Actions автоматически деплоит на Pages. 
+сайт https://acceptmetall.ru/
