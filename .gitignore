@@ -23,3 +23,11 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/node_modules/
 dist/
+
+# Order service credentials and private data
+.env.*
+!.env.example
+!server/.env.example
+*.sqlite
+*.sqlite-*
+server/data/

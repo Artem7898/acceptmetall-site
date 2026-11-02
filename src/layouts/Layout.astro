@@ -1,5 +1,6 @@
 ---
 import { t, type Lang } from '../i18n/translations';
+import { createHash } from 'node:crypto';
 
 interface Props {
   lang: Lang;
@@ -38,7 +39,8 @@ const schemaOrg = {
   ],
   sameAs: [],
 };
-
+const schemaJson = JSON.stringify(schemaOrg).replace(/</g, '\\u003c');
+Astro.csp?.insertScriptHash(`sha256-${createHash('sha256').update(schemaJson).digest('base64')}`);
 
 ---
 
@@ -47,6 +49,7 @@ const schemaOrg = {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
 
   <meta name="description" content={tr.meta.description} />
   <meta name="author" content={lang === 'ru' ? 'ООО Акцепт-2' : 'LLC Akcept-2'} />
@@ -79,22 +82,8 @@ const schemaOrg = {
 
   <title>{tr.meta.title}</title>
 
-  <!-- === PERFORMANCE FIXES === -->
-
-  <!-- 1. Preconnect к доменам шрифтов (убирает ~300-500мс блокировки) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-  <!-- 3. Шрифты через <link> вместо @import в CSS (не блокирует парсинг) -->
-  <!-- Убраны веса 300 и 900 — добавьте обратно, если используются -->
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    media="all"
-  />
-
-  <!-- 4. JSON-LD через set:html — серверная сериализация, чистый JSON в HTML -->
-  <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)}></script>
+  <!-- System fonts avoid disclosing visitors' requests to a font provider. -->
+  <script type="application/ld+json" set:html={schemaJson}></script>
 </head>
 
 <body>

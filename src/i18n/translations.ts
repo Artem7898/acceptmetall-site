@@ -1,3 +1,5 @@
+import { contacts } from '../config/contacts';
+
 export const t = {
   ru: {
     meta: {
@@ -95,12 +97,12 @@ export const t = {
         origin: "Страна происхождения",
         deadline: "Желаемый срок поставки",
         comment: "Комментарий",
-        file: "Прикрепить файл (PDF, DOC, XLS, JPG, PNG)",
+        file: "Прикрепить файл (PDF, JPG, PNG, до 5 МиБ)",
       },
       submit: "Получить расчет",
-      consent: "Нажимая кнопку, вы соглашаетесь с обработкой персональных данных в соответствии с политикой конфиденциальности.",
-      successTitle: "Заявка отправлена",
-      successText: "Спасибо! Мы получили вашу заявку. Специалист свяжется с вами для уточнения параметров поставки.",
+      consent: "Я согласен на обработку данных заявки в соответствии с политикой конфиденциальности.",
+      successTitle: "Заявка принята",
+      successText: "Заявка сохранена. Сохраните её номер для обращения к менеджеру.",
     },
     contact: {
       title: "Свяжитесь с нами",
@@ -111,16 +113,16 @@ export const t = {
         ogrn: "ОГРН",
         ogrnVal: "1247800037473",
         address: "198264, РФ, г. Санкт-Петербург, вн. тер. г. Муниципальный Округ Сосновая Поляна, ул. Летчика Пилютова, д. 17, литера А, офис 79",
-        email: "Fedor.fiberflex@gmail.com",
-        phone: "+7 (904) 551-17-63",
+        email: contacts.requestsEmail,
+        phone: contacts.accept2Phone,
       },
       fiberflex: {
         name: "FIBERFLEX OÜ",
         reg: "Reg. No.",
         regVal: "128 346 38 13911",
         address: "Linnamäe tee 45/53, Tallinn, Estonia",
-        email: "Fedor.fiberflex@gmail.com",
-        phone: "+372 58 190 619",
+        email: contacts.requestsEmail,
+        phone: contacts.fiberflexPhone,
       },
     },
     contactForm: {
@@ -249,12 +251,12 @@ export const t = {
         origin: "Country of Origin",
         deadline: "Desired Delivery Time",
         comment: "Comment",
-        file: "Attach file (PDF, DOC, XLS, JPG, PNG)",
+        file: "Attach file (PDF, JPG, PNG, up to 5 MiB)",
       },
       submit: "Get a Quote",
-      consent: "By clicking the button, you agree to the processing of personal data in accordance with the privacy policy.",
-      successTitle: "Request Submitted",
-      successText: "Thank you! We have received your request. A specialist will contact you to clarify delivery parameters.",
+      consent: "I agree to the processing of my request data as described in the privacy policy.",
+      successTitle: "Request Accepted",
+      successText: "Your request has been saved. Keep its reference number when contacting our team.",
     },
     contact: {
       title: "Contact Us",
@@ -265,16 +267,16 @@ export const t = {
         ogrn: "OGRN",
         ogrnVal: "1247800037473",
         address: "198264, Russia, St. Petersburg, Municipal District Sosnovaya Polyana, Letchika Pilyutova st., 17, lit. A, office 79",
-        email: "Fedor.fiberflex@gmail.com",
-        phone: "+7 (904) 551-17-63",
+        email: contacts.requestsEmail,
+        phone: contacts.accept2Phone,
       },
       fiberflex: {
         name: "FIBERFLEX OÜ",
         reg: "Reg. No.",
         regVal: "128 346 38 13911",
         address: "Linnamäe tee 45/53, Tallinn, Estonia",
-        email: "Fedor.fiberflex@gmail.com",
-        phone: "+372 58 190 619",
+        email: contacts.requestsEmail,
+        phone: contacts.fiberflexPhone,
       },
     },
     contactForm: {

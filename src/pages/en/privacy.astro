@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/sections/Header.astro';
 import Footer from '../../components/sections/Footer.astro';
 import { t } from '../../i18n/translations';
+import { contacts } from '../../config/contacts';
 
 const tr = t.en;
 ---
@@ -16,59 +17,68 @@ const tr = t.en;
       <h1>{tr.privacy.title}</h1>
 
       <div class="legal-content">
-
         <p>
-          This Privacy Policy describes how
-          LLC Akcept-2 collects, uses, and protects
-          users' personal data on the website.
+          LLC Akcept-2 is the data controller for acceptmetall.ru,
+          TIN 7807277155, OGRN 1247800037473.
+          Address: {t.en.contact.accept2.address}.
+          This policy describes the handling of enquiries and quotation requests.
         </p>
 
-        <h2>1. Information Collection</h2>
-
+        <h2>1. Data we process</h2>
         <p>
-          We collect personal data that you voluntarily
-          provide when filling out contact forms:
-          name, company name, contact phone,
-          email address, and information about
-          the requested products.
+          The forms collect your name, company, phone, email, product requirements and message.
+          File attachments are optional. Do not include personal documents or other data
+          that is unnecessary for a quotation. Technical request information is used
+          to limit spam and protect the service.
         </p>
 
-        <h2>2. Use of Information</h2>
-
+        <h2>2. Purpose and processing</h2>
         <p>
-          Collected data is used solely for preparing
-          commercial proposals, communicating with
-          customers, and organizing metal product
-          supplies.
+          We use this information to register your request, prepare a proposal and contact you.
+          An accepted request is saved and assigned a reference number.
+          Email notification to our team is a separate step: a reference number confirms
+          acceptance of the request, not email delivery. An error message does not confirm acceptance.
+        </p>
+        <p>
+          The form asks for consent to processing request data in a separate field.
+          You can contact us directly by email or phone if you prefer not to use the form.
         </p>
 
-        <h2>3. Data Protection</h2>
-
+        <h2>3. Access and recipients</h2>
         <p>
-          We take necessary measures to protect
-          personal data from unauthorized access,
-          alteration, disclosure, or destruction.
+          Authorised staff can access requests. Storage and email service providers may process
+          the information needed to operate the service and notify our team.
+          Requests are not published in a public order list. Submitting an enquiry alone
+          does not subscribe you to marketing messages.
         </p>
 
-        <h2>4. Third-Party Disclosure</h2>
-
+        <h2>4. Retention and deletion</h2>
         <p>
-          Personal data is not transferred to third
-          parties without user consent, except as
-          required by law.
+          Records and attachments in the request intake system are automatically deleted
+          after 90 days. Copies in business correspondence and documents related to
+          a resulting contract may be retained separately for their processing purpose
+          and applicable legal requirements.
+        </p>
+        <p>
+          Contact the controller below to request access, correction or deletion of your data,
+          or to withdraw consent. Include your request reference if available.
+          Withdrawal does not affect processing that has another applicable legal basis.
         </p>
 
-        <h2>5. Contacts</h2>
-
+        <h2>5. External resources and protection</h2>
         <p>
-          For questions regarding personal data
-          processing, contact:
-
-          <a href="mailto:Fedor.fiberflex@gmail.com">
-            Fedor.fiberflex@gmail.com
-          </a>
+          Pages use system fonts and do not request fonts from Google.
+          Forms are transmitted over a secure connection and saved requests are protected
+          by access controls. Do not send passwords, payment credentials or information
+          unrelated to your product enquiry through the forms.
         </p>
 
+        <h2>6. Controller contact</h2>
+        <p>
+          For questions about data, recipients or retention:
+          <a href={`mailto:${contacts.requestsEmail}`}>{contacts.requestsEmail}</a>.
+          Phone: <a href={`tel:${contacts.accept2PhoneHref}`}>{contacts.accept2Phone}</a>.
+        </p>
       </div>
     </div>
   </main>

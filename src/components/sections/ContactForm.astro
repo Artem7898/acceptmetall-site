@@ -1,47 +1,77 @@
 ---
 import { t, type Lang } from '../../i18n/translations';
-
-interface Props {
-  lang: Lang;
-}
-
+import { resolveOrderEndpoint } from '../../scripts/order-client.mjs';
+interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const tr = t[lang];
+const endpoint = resolveOrderEndpoint(import.meta.env.PUBLIC_ORDER_API_URL);
+const privacyPath = lang === 'ru' ? '/privacy/' : '/en/privacy/';
 ---
 
 <section class="contact-form-section">
   <div class="container">
     <div class="contact-form-card">
       <h3 class="contact-form-title">{tr.contactForm.title}</h3>
-      <form class="compact-form" id="compactForm">
-        <div class="compact-row">
-          <input type="text" name="name" placeholder={tr.contactForm.name} required />
-          <input type="text" name="company" placeholder={tr.contactForm.company} />
-        </div>
-        <div class="compact-row">
-          <input type="tel" name="phone" placeholder={tr.contactForm.phone} required />
-          <input type="email" name="email" placeholder={tr.contactForm.email} required />
-        </div>
-        <textarea name="message" placeholder={tr.contactForm.message} rows="3" required></textarea>
-        <button type="submit" class="btn btn-primary">{tr.contactForm.submit}</button>
+      <form class="compact-form" id="compactForm" data-order-form data-lang={lang} method="post" action={endpoint} enctype="multipart/form-data">
+        <input type="hidden" name="kind" value="contact" />
+        <input type="hidden" name="lang" value={lang} />
+        <fieldset disabled data-order-fields>
+          <legend class="visually-hidden">{tr.contactForm.title}</legend>
+          <div class="compact-row">
+            <label for="contact-name">{tr.contactForm.name}
+              <input id="contact-name" type="text" name="name" maxlength="120" autocomplete="name" required />
+            </label>
+            <label for="contact-company">{tr.contactForm.company}
+              <input id="contact-company" type="text" name="company" maxlength="200" autocomplete="organization" />
+            </label>
+          </div>
+          <div class="compact-row">
+            <label for="contact-phone">{tr.contactForm.phone}
+              <input id="contact-phone" type="tel" name="phone" maxlength="40" autocomplete="tel" required />
+            </label>
+            <label for="contact-email">{tr.contactForm.email}
+              <input id="contact-email" type="email" name="email" maxlength="254" autocomplete="email" required />
+            </label>
+          </div>
+          <label for="contact-message">{tr.contactForm.message}
+            <textarea id="contact-message" name="message" rows="3" maxlength="5000" required></textarea>
+          </label>
+          <div class="form-trap" aria-hidden="true">
+            <label for="contact-website">Website</label>
+            <input id="contact-website" name="website" tabindex="-1" autocomplete="off" maxlength="200" />
+          </div>
+          <label class="form-consent">
+            <input type="checkbox" name="consent" value="yes" required />
+            <span>{lang === 'ru' ? 'Согласен на обработку данных для ответа на сообщение. ' : 'I consent to processing my data to respond to this message. '}<a href={privacyPath}>{lang === 'ru' ? 'Политика конфиденциальности' : 'Privacy policy'}</a></span>
+          </label>
+          <button type="submit" class="btn btn-primary" data-order-submit>{tr.contactForm.submit}</button>
+        </fieldset>
+        <p data-order-error role="alert" class="form-error" hidden></p>
+        <noscript><p>{lang === 'ru' ? 'Для отправки формы включите JavaScript или позвоните: +7 (904) 551-17-63.' : 'Enable JavaScript to submit this form, or call +7 (904) 551-17-63.'}</p></noscript>
       </form>
+      <p data-order-result="compactForm" class="form-result" role="status" aria-live="polite" tabindex="-1" hidden></p>
     </div>
   </div>
 </section>
 
 <script>
-  document.getElementById('compactForm')?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const data = new FormData(e.target);
-    const lang = document.documentElement.lang;
-    const email = lang === 'ru' ? 'Fedor.accept-2@yandex.ru' : 'Fedor.fiberflex@gmail.com';
-    const body = `Name: ${data.get('name')}\nCompany: ${data.get('company')}\nPhone: ${data.get('phone')}\nEmail: ${data.get('email')}\n\nMessage:\n${data.get('message')}`;
-    window.location.href = `mailto:${email}?subject=[Contact] ${data.get('company')}&body=${encodeURIComponent(body)}`;
-    e.target.reset();
-  });
+  import { initOrderForms } from '../../scripts/order-form.mjs';
+  initOrderForms();
 </script>
 
 <style>
+  [hidden] { display: none !important; }
+  fieldset { display: flex; flex-direction: column; gap: 16px; border: 0; padding: 0; margin: 0; min-width: 0; }
+  fieldset:disabled { opacity: .65; }
+  .compact-form label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+  .compact-form .form-consent { flex-direction: row; align-items: flex-start; gap: 10px; }
+  .form-consent input { flex: 0 0 auto; margin-top: 3px; }
+  .form-consent a { color: #1d4ed8; text-decoration: underline; }
+  .visually-hidden, .form-trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .form-error { color: #b91c1c; }
+  .form-result { background: white; padding: 20px; border: 2px solid #15803d; border-radius: var(--radius); margin-top: 20px; }
+  button:disabled { opacity: .65; cursor: wait; }
+
   .contact-form-section {
     padding: 80px 0;
     background: var(--color-bg-light);
