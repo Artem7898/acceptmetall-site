@@ -7,8 +7,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: "pages"
@@ -17,34 +15,60 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      ASTRO_TELEMETRY_DISABLED: 1
+      PUBLIC_ORDER_API_URL: ${{ vars.PUBLIC_ORDER_API_URL }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Check dependency advisories
+        run: npm audit --audit-level=moderate
+
+      - name: Test
+        run: npm test
 
       - name: Build
         run: npm run build
 
+      - name: Validate Pages order API configuration
+        run: |
+          node --input-type=module <<'JS'
+          const raw = process.env.PUBLIC_ORDER_API_URL;
+          let endpoint;
+          try { endpoint = new URL(raw); } catch {}
+          if (!endpoint || endpoint.protocol !== 'https:' || endpoint.username || endpoint.password || endpoint.search || endpoint.hash || endpoint.pathname !== '/api/orders') {
+            console.error('Configure the GitHub repository variable PUBLIC_ORDER_API_URL with the deployed HTTPS order endpoint, e.g. https://orders.example.com/api/orders. GitHub Pages cannot run the order API. Publishing is blocked until it is configured.');
+            process.exit(1);
+          }
+          JS
+
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:
           path: ./dist
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

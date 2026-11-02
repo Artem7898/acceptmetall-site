@@ -1,5 +1,6 @@
 ---
 import { t, type Lang } from '../../i18n/translations';
+import { contacts } from '../../config/contacts';
 
 interface Props {
   lang: Lang;
@@ -81,12 +82,12 @@ const termsPath =
             ООО «Акцепт-2»
           </span>
 
-          <a href="tel:+79045511763">
-            +7 (904) 551-17-63
+          <a href={`tel:${contacts.accept2PhoneHref}`}>
+            {contacts.accept2Phone}
           </a>
 
-          <a href="mailto:Fedor.fiberflex@gmail.com">
-            Fedor.fiberflex@gmail.com
+          <a href={`mailto:${contacts.requestsEmail}`}>
+            {contacts.requestsEmail}
           </a>
         </div>
 
@@ -95,12 +96,12 @@ const termsPath =
             FIBERFLEX OÜ
           </span>
 
-          <a href="tel:+37258190619">
-            +372 58 190 619
+          <a href={`tel:${contacts.fiberflexPhoneHref}`}>
+            {contacts.fiberflexPhone}
           </a>
 
-          <a href="mailto:Fedor.fiberflex@gmail.com">
-            Fedor.fiberflex@gmail.com
+          <a href={`mailto:${contacts.requestsEmail}`}>
+            {contacts.requestsEmail}
           </a>
         </div>
 

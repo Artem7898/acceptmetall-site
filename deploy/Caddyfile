@@ -1,0 +1,25 @@
+# Set ORDER_PUBLIC_HOST to the actual DNS hostname of this API server.
+# Caddy provisions and renews trusted HTTPS certificates for that hostname.
+{$ORDER_PUBLIC_HOST} {
+    request_body {
+        max_size 6MB
+    }
+    header {
+        Strict-Transport-Security "max-age=31536000"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "no-referrer"
+        Permissions-Policy "camera=(), microphone=(), geolocation=()"
+        Cache-Control "no-store"
+        -Server
+    }
+    handle /api/* {
+        reverse_proxy 127.0.0.1:8787
+    }
+    handle /healthz {
+        reverse_proxy 127.0.0.1:8787
+    }
+    handle {
+        respond 404
+    }
+}

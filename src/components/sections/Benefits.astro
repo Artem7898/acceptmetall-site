@@ -17,7 +17,7 @@ const tr = t[lang];
     </div>
     <div class="benefits-grid">
       {tr.benefits.cards.map((card, i) => (
-        <div class="benefit-card" style={`--delay: ${i * 0.1}s`}>
+        <div class="benefit-card">
           <div class="benefit-num">0{i + 1}</div>
           <h3 class="benefit-title">{card.title}</h3>
           <p class="benefit-desc">{card.desc}</p>
